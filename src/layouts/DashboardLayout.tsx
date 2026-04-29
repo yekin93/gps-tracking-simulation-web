@@ -3,11 +3,15 @@ import Sidebar from '../components/navigation/Sidebar';
 
 export default function DashboardLayout() {
   return (
-    <div className="flex" style={{ minHeight: '100vh' }}>
+    <div className="flex min-h-screen">
       <Sidebar />
-      <div className="flex-1 min-w-0 bg-slate-50 overflow-auto">
+      {/*
+        Make only the main content area scroll.
+        Sidebar stays visible via `position: sticky` + `h-screen`.
+      */}
+      <main className="flex-1 min-w-0 min-h-screen overflow-y-auto bg-slate-50">
         <Outlet />
-      </div>
+      </main>
     </div>
   );
 }
