@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   LayoutDashboard,
@@ -28,12 +27,15 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Settings', path: '/settings', icon: <Settings className="h-5 w-5 shrink-0" /> },
 ];
 
-export default function Sidebar() {
-  const [collapsed, setCollapsed] = useState(false);
+interface SidebarProps {
+  collapsed: boolean;
+  onToggle: () => void;
+}
 
+export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
   return (
     <aside
-      className="relative flex flex-col bg-white border-r border-slate-200 shadow-sm transition-all duration-300 ease-in-out shrink-0"
+      className="fixed top-0 left-0 flex flex-col bg-white border-r border-slate-200 shadow-sm transition-all duration-300 ease-in-out z-40"
       style={{ width: collapsed ? 80 : 260, height: '100vh' }}
     >
       {/* Logo / brand area */}
@@ -52,7 +54,7 @@ export default function Sidebar() {
       </div>
 
       {/* Navigation items */}
-      <nav className="flex-1 px-3 py-4 flex flex-col gap-0.5 overflow-y-auto overflow-x-hidden">
+      <nav aria-label="Main navigation" className="flex-1 px-3 py-4 flex flex-col gap-0.5 overflow-y-auto overflow-x-hidden">
         {NAV_ITEMS.map(({ label, path, icon }) => (
           <NavLink
             key={path}
@@ -80,7 +82,7 @@ export default function Sidebar() {
       <div className="px-3 pb-4">
         <button
           type="button"
-          onClick={() => setCollapsed((c) => !c)}
+          onClick={onToggle}
           title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           className="flex items-center justify-center w-full rounded-lg px-3 py-2 text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
         >
