@@ -9,9 +9,9 @@ export function Card({ clickable = false, className = '', children, ...props }: 
   return (
     <div
       className={[
-        'bg-white rounded-xl border border-slate-200 shadow-sm',
+        'bg-white rounded-xl border border-slate-200/80 shadow-md',
         clickable
-          ? 'cursor-pointer hover:shadow-md hover:scale-[1.015] active:scale-[1.005] transition-all duration-200'
+          ? 'cursor-pointer hover:shadow-lg hover:scale-[1.01] active:scale-[1.005] transition-all duration-200 ease-in-out motion-reduce:transition-none motion-reduce:transform-none'
           : '',
         className,
       ].join(' ')}

@@ -1,5 +1,6 @@
 import { useMemo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Plus, Search, Clock, Battery, Monitor } from 'lucide-react';
 import { devicesApi } from '../api/devices';
 import type { Device, DeviceStatus } from '../types/device';
 import { Badge } from '../components/Badge';
@@ -64,19 +65,7 @@ export default function DeviceListPage() {
             onClick={() => navigate('/devices/new')}
             aria-label="Create a new device"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                clipRule="evenodd"
-              />
-            </svg>
+            <Plus className="h-4 w-4" aria-hidden="true" />
             New Device
           </Button>
         </div>
@@ -92,23 +81,7 @@ export default function DeviceListPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             aria-label="Search devices by name"
-            leadingIcon={
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-4.35-4.35M17 11A6 6 0 105 11a6 6 0 0012 0z"
-                />
-              </svg>
-            }
+            leadingIcon={<Search className="h-4 w-4" aria-hidden="true" />}
           />
         </div>
 
@@ -147,21 +120,7 @@ export default function DeviceListPage() {
         ) : filtered.length === 0 ? (
           /* ── Empty state ── */
           <div className="flex flex-col items-center justify-center py-24 text-center gap-3">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-12 w-12 text-slate-300"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              />
-            </svg>
+            <Monitor className="h-12 w-12 text-slate-300" aria-hidden="true" />
             <p className="text-slate-600 font-medium text-base">No devices found</p>
             <p className="text-slate-400 text-sm max-w-xs">
               {search || statusFilter !== 'ALL'
@@ -243,40 +202,12 @@ function DeviceCard({ device, onView, onEdit }: DeviceCardProps) {
       {/* Card body — metadata */}
       <div className="px-5 py-3 border-t border-slate-100 flex items-center gap-4 text-xs text-slate-500 flex-1">
         <span title="Last seen" className="flex items-center gap-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-3.5 w-3.5 text-slate-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
+          <Clock className="h-3.5 w-3.5 text-slate-400" aria-hidden="true" />
           {formatLastSeen(device.lastSeen)}
         </span>
         {device.batteryLevel !== undefined && (
           <span className={['flex items-center gap-1', batteryTextColor].join(' ')} title="Battery level">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-3.5 w-3.5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 7H7a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2V9a2 2 0 00-2-2zm2 3h1a1 1 0 010 2h-1"
-              />
-            </svg>
+            <Battery className="h-3.5 w-3.5" aria-hidden="true" />
             {device.batteryLevel}%
           </span>
         )}

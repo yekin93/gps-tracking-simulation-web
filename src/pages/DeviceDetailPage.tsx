@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 import { devicesApi } from '../api/devices';
 import type { Device } from '../types/device';
 import { Badge } from '../components/Badge';
@@ -80,7 +81,8 @@ export default function DeviceDetailPage() {
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center gap-4">
         <p className="text-slate-600 font-medium text-lg">Device not found</p>
         <Button variant="secondary" onClick={() => navigate('/devices')}>
-          ← Back to Devices
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          Back to Devices
         </Button>
       </div>
     );
@@ -97,9 +99,10 @@ export default function DeviceDetailPage() {
             <button
               type="button"
               onClick={() => navigate('/devices')}
-              className="text-xs text-slate-400 hover:text-slate-600 transition-colors text-left w-fit mb-1"
+              className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-slate-600 transition-colors duration-200 ease-in-out text-left w-fit mb-1"
             >
-              ← All Devices
+              <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
+              All Devices
             </button>
             <div className="flex items-center gap-3 flex-wrap">
               <h1 className="text-2xl font-bold text-slate-800 tracking-tight">
@@ -137,7 +140,7 @@ export default function DeviceDetailPage() {
       {/* ── Main content ── */}
       <main className="max-w-4xl mx-auto px-6 py-8 flex flex-col gap-6">
         {/* Location section */}
-        <section className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+        <section className="bg-white rounded-xl border border-slate-200/80 shadow-md overflow-hidden">
           <div className="px-6 py-4 border-b border-slate-100">
             <h2 className="text-xs font-semibold text-slate-500 uppercase tracking-widest">
               Location
@@ -160,7 +163,7 @@ export default function DeviceDetailPage() {
         </section>
 
         {/* Device info section */}
-        <section className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+        <section className="bg-white rounded-xl border border-slate-200/80 shadow-md overflow-hidden">
           <div className="px-6 py-4 border-b border-slate-100">
             <h2 className="text-xs font-semibold text-slate-500 uppercase tracking-widest">
               Device Info

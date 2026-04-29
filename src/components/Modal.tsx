@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
+import { X } from 'lucide-react';
 
 interface ModalProps {
   open: boolean;
@@ -34,7 +35,7 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
         aria-hidden="true"
       />
       {/* Dialog panel */}
-      <div className="relative bg-white rounded-2xl shadow-xl max-w-md w-full p-6 flex flex-col gap-4">
+      <div className="relative bg-white rounded-2xl shadow-xl max-w-md w-full p-6 flex flex-col gap-4 border border-slate-200/80">
         <div className="flex items-center justify-between">
           <h2 id="modal-title" className="text-lg font-semibold text-slate-800">
             {title}
@@ -42,22 +43,10 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
           <button
             type="button"
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 transition-colors p-1 rounded"
+            className="text-slate-400 hover:text-slate-600 transition-all duration-200 ease-in-out p-1 rounded-md hover:bg-slate-100 active:bg-slate-200 active:scale-95"
             aria-label="Close dialog"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fillRule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
+            <X className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
         {children}

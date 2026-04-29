@@ -11,13 +11,13 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    'bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500 shadow-sm',
+    'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 active:scale-95 active:translate-y-px focus-visible:ring-blue-500 shadow-sm hover:shadow-md',
   secondary:
-    'bg-slate-100 text-slate-700 hover:bg-slate-200 focus-visible:ring-slate-400',
+    'bg-slate-100 text-slate-700 hover:bg-slate-200 active:bg-slate-300 active:scale-95 active:translate-y-px focus-visible:ring-slate-400',
   ghost:
-    'bg-transparent text-slate-600 hover:bg-slate-100 focus-visible:ring-slate-400',
+    'bg-transparent text-slate-600 hover:bg-slate-100 active:bg-slate-200 active:scale-95 active:translate-y-px focus-visible:ring-slate-400',
   destructive:
-    'bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500 shadow-sm',
+    'bg-red-600 text-white hover:bg-red-700 active:bg-red-800 active:scale-95 active:translate-y-px focus-visible:ring-red-500 shadow-sm hover:shadow-md',
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -44,9 +44,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || loading}
         className={[
-          'inline-flex items-center justify-center gap-2 font-medium transition-colors',
+          'inline-flex items-center justify-center gap-2 font-medium',
+          'transition-all duration-200 ease-in-out',
+          'motion-reduce:transition-none motion-reduce:transform-none',
           'focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
-          'disabled:opacity-50 disabled:cursor-not-allowed',
+          'disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 disabled:active:translate-y-0',
           variantClasses[variant],
           sizeClasses[size],
           className,
